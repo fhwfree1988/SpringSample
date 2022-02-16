@@ -3,24 +3,18 @@ package me.samplespring.my_samples.domain;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.SequenceGenerator;
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.*;
+
+import lombok.*;
+import me.samplespring.my_samples.model.AmenityType;
 
 
 @Entity
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Reservation {
 
     @Id
@@ -55,6 +49,10 @@ public class Reservation {
 
     @Column(nullable = false)
     private OffsetDateTime lastUpdated;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private AmenityType amenityType;
 
     @PrePersist
     public void prePersist() {

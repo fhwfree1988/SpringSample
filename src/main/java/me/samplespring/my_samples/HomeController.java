@@ -5,13 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
-@Controller
+//@Controller
 public class HomeController {
 
-    @GetMapping("/")
+    /*@GetMapping("/")
     @ResponseBody
     public String index() {
         return "Hello World!";
-    }
+    }*/
 
 }

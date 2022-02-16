@@ -28,4 +28,6 @@ public class ReservationDTO {
     @NotNull
     private Long user;
 
+    @NotNull
+    private AmenityType amenityType;
 }
