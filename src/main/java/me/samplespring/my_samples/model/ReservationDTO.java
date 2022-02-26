@@ -1,15 +1,21 @@
 package me.samplespring.my_samples.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
+
+import me.samplespring.my_samples.domain.User;
 
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ReservationDTO {
 
     private Long id;
@@ -26,8 +32,10 @@ public class ReservationDTO {
     private LocalTime endTime;
 
     @NotNull
-    private Long user;
+    private User user;
 
     @NotNull
-    private AmenityType amenityType;
+    private Types.AmenityType amenityType;
+
+
 }

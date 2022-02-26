@@ -60,4 +60,11 @@ public class UserService {
         return user;
     }
 
+    //Static Methods
+    public static User MapDTOToEntity(UserDTO userDto) {
+        User user = User.builder()
+                .id(userDto.getId())
+                .name(userDto.getName()).build();
+        return user;
+    }
 }

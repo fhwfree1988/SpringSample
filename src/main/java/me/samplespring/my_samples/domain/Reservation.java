@@ -6,7 +6,8 @@ import java.time.OffsetDateTime;
 import javax.persistence.*;
 
 import lombok.*;
-import me.samplespring.my_samples.model.AmenityType;
+import me.samplespring.my_samples.model.Types;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -31,12 +32,15 @@ public class Reservation {
     )
     private Long id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private LocalDate reservationDate;
 
+    @DateTimeFormat(pattern = "HH:mm")
     @Column(nullable = false)
     private LocalTime startTime;
 
+    @DateTimeFormat(pattern = "HH:mm")
     @Column(nullable = false)
     private LocalTime endTime;
 
@@ -52,7 +56,7 @@ public class Reservation {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private AmenityType amenityType;
+    private Types.AmenityType amenityType;
 
     @PrePersist
     public void prePersist() {

@@ -2,7 +2,7 @@ package me.samplespring.my_samples;
 
 import me.samplespring.my_samples.domain.Reservation;
 import me.samplespring.my_samples.domain.User;
-import me.samplespring.my_samples.model.AmenityType;
+import me.samplespring.my_samples.model.Types;
 import me.samplespring.my_samples.repos.ReservationRepository;
 import me.samplespring.my_samples.repos.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -40,7 +40,7 @@ public class MySamplesApplication {
                     .startTime(LocalTime.of(12, 00))
                     .endTime(LocalTime.of(13, 00))
                     .user(user)
-                    .amenityType(AmenityType.POOL)
+                    .amenityType(Types.AmenityType.POOL)
                     .build();
 
             reservationRepository.save(reservation);

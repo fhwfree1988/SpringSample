@@ -1,6 +1,7 @@
 package me.samplespring.my_samples.service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import me.samplespring.my_samples.domain.Reservation;
 import me.samplespring.my_samples.domain.User;
@@ -60,7 +61,7 @@ public class ReservationService {
         reservationDTO.setReservationDate(reservation.getReservationDate());
         reservationDTO.setStartTime(reservation.getStartTime());
         reservationDTO.setEndTime(reservation.getEndTime());
-        reservationDTO.setUser(reservation.getUser() == null ? null : reservation.getUser().getId());
+        reservationDTO.setUser(reservation.getUser() == null ? null : reservation.getUser());
         return reservationDTO;
     }
 
@@ -69,12 +70,52 @@ public class ReservationService {
         reservation.setReservationDate(reservationDTO.getReservationDate());
         reservation.setStartTime(reservationDTO.getStartTime());
         reservation.setEndTime(reservationDTO.getEndTime());
-        if (reservationDTO.getUser() != null && (reservation.getUser() == null || !reservation.getUser().getId().equals(reservationDTO.getUser()))) {
-            final User user = userRepository.findById(reservationDTO.getUser())
+        if (reservationDTO.getUser() != null && (reservation.getUser() == null || !reservation.getUser().getId().equals(reservationDTO.getUser().getId()))) {
+            final User user = userRepository.findById(reservationDTO.getUser().getId())
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "user not found"));
             reservation.setUser(user);
         }
         return reservation;
     }
 
+
+    //Static Methods
+    public static Set<ReservationDTO> MapToDTO(Set<Reservation> userReservations){
+        Set<ReservationDTO> userReservationsDto = userReservations.stream().map(
+                (model) -> ReservationDTO.builder()
+                        .reservationDate(model.getReservationDate())
+                        .startTime(model.getStartTime())
+                        .endTime(model.getEndTime())
+                        .user(model.getUser())
+                        .amenityType(model.getAmenityType())
+                        .build()
+        ).collect(Collectors.toSet());
+
+        return userReservationsDto;
+    }
+
+    public static Reservation MapDTOToEntity(ReservationDTO userReservationsDto){
+        Reservation userReservations = Reservation.builder()
+                .reservationDate(userReservationsDto.getReservationDate())
+                .startTime(userReservationsDto.getStartTime())
+                .endTime(userReservationsDto.getEndTime())
+                .user(userReservationsDto.getUser())
+                .amenityType(userReservationsDto.getAmenityType())
+                .build();
+
+        return userReservations;
+    }
+    public static Set<Reservation> MapDTOToEntity(Set<ReservationDTO> userReservationsDto){
+        Set<Reservation> userReservations = userReservationsDto.stream().map(
+                (model) -> Reservation.builder()
+                        .reservationDate(model.getReservationDate())
+                        .startTime(model.getStartTime())
+                        .endTime(model.getEndTime())
+                        .user(model.getUser())
+                        .amenityType(model.getAmenityType())
+                        .build()
+        ).collect(Collectors.toSet());
+
+        return userReservations;
+    }
 }
