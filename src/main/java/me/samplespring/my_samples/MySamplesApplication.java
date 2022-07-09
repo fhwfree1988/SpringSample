@@ -9,6 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
+import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -17,11 +20,13 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-
+@EnableSwagger2
+@Import(BeanValidatorPluginsConfiguration.class)
 @SpringBootApplication
 public class MySamplesApplication {
     //https://www.freecodecamp.org/news/spring-boot-tutorial-build-fast-modern-java-app/
     //https://spring.io/guides/gs/accessing-data-mysql/
+    //https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
     public static void main(String[] args) {
         SpringApplication.run(MySamplesApplication.class, args);
     }
