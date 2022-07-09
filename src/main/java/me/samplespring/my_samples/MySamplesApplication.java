@@ -21,6 +21,7 @@ import java.util.Date;
 @SpringBootApplication
 public class MySamplesApplication {
     //https://www.freecodecamp.org/news/spring-boot-tutorial-build-fast-modern-java-app/
+    //https://spring.io/guides/gs/accessing-data-mysql/
     public static void main(String[] args) {
         SpringApplication.run(MySamplesApplication.class, args);
     }

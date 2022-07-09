@@ -1,8 +1,16 @@
+
 spring:
   datasource:
-    url: ${JDBC_DATABASE_URL:jdbc:h2:mem:my-samples}
-    username: ${JDBC_DATABASE_USERNAME:sa}
-    password: ${JDBC_DATABASE_PASSWORD:}
+    url: jdbc:mysql://localhost:3306/reservation
+    username: 123456
+    password: root
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #spring.jpa.show-sql: true
+
+    #url: ${JDBC_DATABASE_URL:jdbc:h2:mem:my-samples}
+    #username: ${JDBC_DATABASE_USERNAME:sa}
+    #password: ${JDBC_DATABASE_PASSWORD:}
+
   dbcp2:
     max-wait-millis: 30000
     validation-query: "SELECT 1"
@@ -20,3 +28,4 @@ spring:
           new_generator_mappings: true
 springdoc:
   pathsToMatch: /api/**
+
