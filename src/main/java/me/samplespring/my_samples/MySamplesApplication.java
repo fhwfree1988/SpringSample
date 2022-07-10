@@ -20,8 +20,8 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-@EnableSwagger2
-@Import(BeanValidatorPluginsConfiguration.class)
+/*@EnableSwagger2*/
+/*@Import(BeanValidatorPluginsConfiguration.class)*/
 @SpringBootApplication
 public class MySamplesApplication {
     //https://www.freecodecamp.org/news/spring-boot-tutorial-build-fast-modern-java-app/
@@ -32,7 +32,7 @@ public class MySamplesApplication {
     }
 
 
-    @Bean
+    /*@Bean*/
     public CommandLineRunner loadData(UserRepository userRepository, ReservationRepository reservationRepository){
         return (args) ->{
             User user = User.builder().name("Foad").build();
@@ -52,4 +52,5 @@ public class MySamplesApplication {
             reservationRepository.save(reservation);
         };
     }
+
 }

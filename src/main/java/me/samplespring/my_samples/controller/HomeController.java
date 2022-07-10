@@ -35,12 +35,12 @@ public class HomeController {
         this.reservationService = reservationService;
     }
 
-    @GetMapping("/")
+    /*@GetMapping("/")*/
     public String index(Model model){
         return "index";
     }
 
-    @GetMapping("/reservations")
+   /* @GetMapping("/reservations")*/
     public  String reservation(Model model){
         /*User user = userService.get(10000L);*/
         UserDTO user = userService.get(10000L);
