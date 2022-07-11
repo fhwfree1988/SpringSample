@@ -1,13 +1,15 @@
-package me.samplespring.my_samples;
+package me.samplespring.my_samples.config.DataInsertion;
 
+import me.samplespring.my_samples.domain.Product;
 import me.samplespring.my_samples.domain.Reservation;
 import me.samplespring.my_samples.domain.User;
 import me.samplespring.my_samples.model.Types;
+import me.samplespring.my_samples.repos.ProductRepository;
 import me.samplespring.my_samples.repos.ReservationRepository;
 import me.samplespring.my_samples.repos.UserRepository;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -16,24 +18,18 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-/*@EnableSwagger2*/
-/*@Import(BeanValidatorPluginsConfiguration.class)*/
-@SpringBootApplication
-public class MySamplesApplication {
-    //https://www.freecodecamp.org/news/spring-boot-tutorial-build-fast-modern-java-app/
-    //https://spring.io/guides/gs/accessing-data-mysql/
-    //https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
-    //https://www.baeldung.com/spring-response-entity
-    public static void main(String[] args) {
-        SpringApplication.run(MySamplesApplication.class, args);
-    }
+@Configuration
+public class ProductData {
 
-
-    /*@Bean*/
-    /*public CommandLineRunner loadData(UserRepository userRepository, ReservationRepository reservationRepository){
+    @Bean
+    public CommandLineRunner loadData(ProductRepository productRepository){
         return (args) ->{
-            User user = User.builder().name("Foad").build();
-            userRepository.save(user);
+            Product user = Product.builder()
+                    .productName("P1")
+                    .isActive(true)
+                    .productCostSet()
+                    .build();
+            productRepository.save(user);
 
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date date = new Date();
@@ -48,6 +44,5 @@ public class MySamplesApplication {
 
             reservationRepository.save(reservation);
         };
-    }*/
-
+    }
 }
