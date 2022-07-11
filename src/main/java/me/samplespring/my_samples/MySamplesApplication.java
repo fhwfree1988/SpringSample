@@ -23,6 +23,7 @@ public class MySamplesApplication {
     //https://www.freecodecamp.org/news/spring-boot-tutorial-build-fast-modern-java-app/
     //https://spring.io/guides/gs/accessing-data-mysql/
     //https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
+    //https://www.baeldung.com/spring-response-entity
     public static void main(String[] args) {
         SpringApplication.run(MySamplesApplication.class, args);
     }
