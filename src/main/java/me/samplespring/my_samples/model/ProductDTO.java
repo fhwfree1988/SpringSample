@@ -17,5 +17,5 @@ public class ProductDTO {
     private Long productNo;
 
     @NotNull
-    private int productName;
+    private String productName;
 }

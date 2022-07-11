@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -18,10 +19,19 @@ public class Product {
     private Long Id;
 
     /*@GeneratedValue(strategy = GenerationType.IDENTITY)*/
+    @SequenceGenerator(name = "productNo",sequenceName = "productNo",allocationSize = 2,initialValue = 3000)
+    @GeneratedValue(strategy =  GenerationType.SEQUENCE ,generator = "productNo" )
     @Column()
     private Long productNo;
 
     @Column()
-    private int productName;
+    private String productName;
+
+    @Column()
+    private boolean isActive;
+
+    @OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
+    private Set<ProductCost> productCostSet;
+
 
 }
