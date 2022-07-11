@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.OffsetDateTime;
 
 @Entity
 @Getter
@@ -22,9 +23,13 @@ public class ProductCost {
     @Column
     private int Cost;
 
-    @DateTimeFormat(pattern = "yyyy-mm-dd hh:mm")
+    //@DateTimeFormat(pattern = "yyyy-mm-dd hh:mm")
     @Column(nullable = false)
-    private LocalDate submitionDate;
+    private OffsetDateTime submitionDate;
+
+    //@DateTimeFormat(pattern = "yyyy-mm-dd hh:mm")
+    @Column(nullable = false)
+    private OffsetDateTime lastUpdated;
 
     @Column
     private boolean isActive;
@@ -33,5 +38,17 @@ public class ProductCost {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id",nullable = false)
     private Product product;
+
+
+    @PrePersist
+    public void prePersist() {
+        submitionDate = OffsetDateTime.now();
+        lastUpdated = submitionDate;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        lastUpdated = OffsetDateTime.now();
+    }
 
 }
