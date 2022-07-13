@@ -1,5 +1,6 @@
 package me.samplespring.my_samples;
 
+import me.samplespring.my_samples.config.DataInsertion.RunData;
 import me.samplespring.my_samples.domain.Reservation;
 import me.samplespring.my_samples.domain.User;
 import me.samplespring.my_samples.model.Types;
@@ -8,6 +9,7 @@ import me.samplespring.my_samples.repos.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -31,7 +33,12 @@ public class MySamplesApplication {
         SpringApplication.run(MySamplesApplication.class, args);
     }
 
-
+    @Bean
+    public CommandLineRunner loadData(RunData runData){
+        return (args) -> {
+            runData.loadData();
+        };
+    }
     /*@Bean*/
     /*public CommandLineRunner loadData(UserRepository userRepository, ReservationRepository reservationRepository){
         return (args) ->{
