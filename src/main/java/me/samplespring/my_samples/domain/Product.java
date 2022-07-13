@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -42,30 +43,33 @@ public class Product {
     @OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
     private Set<ProductCost> productCostSet;
 
-    @Column()
+    /*@Column()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ONE")
     @SequenceGenerator(name = "ONE", sequenceName = "ONE", allocationSize =1)
-    private Long seq;
+    private Long seq;*/
 
     /*@Generated(GenerationTime.INSERT)*/
     /*@Column(name = "column_name", insertable = false)*/
     /*@Column(columnDefinition = "integer auto_increment")
     private Integer orderID;*/
 
-   /* @GeneratorType(type = MyGenerator.class, when = GenerationTime.INSERT)
+    @GeneratorType(type = MyGenerator.class, when = GenerationTime.INSERT)
     @Column(name = "dat_auto")
-    private Long auto;*/
+    private Long auto;
 
 }
 
 class MyGenerator implements ValueGenerator<Long>
 {
-    public Long generateValue(Session session, Object owner)
+    public String generateValue(Session session, Object owner)
     {
-        return (
+        /*return (
                 (BigInteger) session
                         .createNativeQuery("select nextval('TST_DATA_SEQ')")
                         .getSingleResult()
-        ).longValue();
+
+        ).longValue();*/
+        LocalDate localDate = LocalDate.now();
+        return localDate.getYear() + localDate.getMonth() + localDate.getDayOfMonth() + localDate.;
     }
 }
