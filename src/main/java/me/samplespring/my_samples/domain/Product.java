@@ -11,8 +11,12 @@ import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Set;
+import java.util.TimeZone;
 
 @Entity
 @Getter
@@ -21,6 +25,10 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
+    private static final SimpleDateFormat dateFormat
+            = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    private String date;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(insertable = false,unique = true,nullable = false)
@@ -53,23 +61,34 @@ public class Product {
     /*@Column(columnDefinition = "integer auto_increment")
     private Integer orderID;*/
 
-    @GeneratorType(type = MyGenerator.class, when = GenerationTime.INSERT)
+    /*@GeneratorType(type = MyGenerator.class, when = GenerationTime.INSERT)
     @Column(name = "dat_auto")
-    private Long auto;
+    private Long auto;*/
 
-}
-
-class MyGenerator implements ValueGenerator<Long>
-{
-    public String generateValue(Session session, Object owner)
-    {
-        /*return (
-                (BigInteger) session
-                        .createNativeQuery("select nextval('TST_DATA_SEQ')")
-                        .getSingleResult()
-
-        ).longValue();*/
-        LocalDate localDate = LocalDate.now();
-        return localDate.getYear() + localDate.getMonth() + localDate.getDayOfMonth() + localDate.;
+    public Date getSubmissionDateConverted(String timezone) throws ParseException {
+        dateFormat.setTimeZone(TimeZone.getTimeZone(timezone));
+        return dateFormat.parse(this.date);
     }
+
+    public void setSubmissionDate(Date date, String timezone) {
+        dateFormat.setTimeZone(TimeZone.getTimeZone(timezone));
+        this.date = dateFormat.format(date);
+    }
+
 }
+
+//class MyGenerator implements ValueGenerator<Long>
+//{
+//    public String generateValue(Session session, Object owner)
+//    {
+//        /*return (
+//                (BigInteger) session
+//                        .createNativeQuery("select nextval('TST_DATA_SEQ')")
+//                        .getSingleResult()
+//
+//        ).longValue();*/
+//        /*LocalDate localDate = LocalDate.now();
+//        return localDate.getYear() + localDate.getMonth() + localDate.getDayOfMonth();*/
+//        return "";
+//    }
+//}

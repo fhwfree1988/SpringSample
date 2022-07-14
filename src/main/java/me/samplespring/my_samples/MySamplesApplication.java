@@ -6,6 +6,7 @@ import me.samplespring.my_samples.domain.User;
 import me.samplespring.my_samples.model.Types;
 import me.samplespring.my_samples.repos.ReservationRepository;
 import me.samplespring.my_samples.repos.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -37,7 +38,13 @@ public class MySamplesApplication {
     public CommandLineRunner loadData(RunData runData){
         return (args) -> {
             runData.loadData();
+
         };
+    }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
     /*@Bean*/
     /*public CommandLineRunner loadData(UserRepository userRepository, ReservationRepository reservationRepository){
