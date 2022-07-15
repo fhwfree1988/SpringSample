@@ -2,11 +2,12 @@ package me.samplespring.my_samples.model.mapper;
 
 import me.samplespring.my_samples.domain.Product;
 import me.samplespring.my_samples.model.ProductDTO;
+import org.mapstruct.Mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-
+@Mapper(componentModel = "spring")
 public class ProductMapper implements EntityMapper<ProductDTO, Product> {
     @Autowired
     private ModelMapper modelMapper;
