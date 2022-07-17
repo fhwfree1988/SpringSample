@@ -33,7 +33,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(insertable = false,unique = true,nullable = false)
     /*@Column(unique = true,nullable = false)*/
-    private Long Id;
+    private Long id;
 
     /*@GeneratedValue(strategy = GenerationType.IDENTITY)*/
     @SequenceGenerator(name = "productNo",sequenceName = "productNo",initialValue = 3000)

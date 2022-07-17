@@ -30,7 +30,7 @@ public class ProductData {
         if (productRepository.findAll().size() == 0) {
             int count = 0;
             while (count < 10) {
-                Product user = Product.builder().Id((long) (count+2))
+                Product user = Product.builder().id((long) (count+2))
                         .productName("P_" + count)
                         .isActive(true)
                         .build();

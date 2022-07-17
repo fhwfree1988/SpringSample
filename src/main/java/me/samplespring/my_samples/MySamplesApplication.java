@@ -6,7 +6,7 @@ import me.samplespring.my_samples.domain.User;
 import me.samplespring.my_samples.model.Types;
 import me.samplespring.my_samples.repos.ReservationRepository;
 import me.samplespring.my_samples.repos.UserRepository;
-import org.modelmapper.ModelMapper;
+/*import org.modelmapper.ModelMapper;*/
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,13 +23,7 @@ import java.util.Date;
 /*@Import(BeanValidatorPluginsConfiguration.class)*/
 @SpringBootApplication
 public class MySamplesApplication {
-    //https://www.freecodecamp.org/news/spring-boot-tutorial-build-fast-modern-java-app/
-    //https://spring.io/guides/gs/accessing-data-mysql/
-    //https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
-    //https://www.baeldung.com/spring-response-entity
-    //https://stackoverflow.com/questions/67691575/when-should-you-use-configuration-instead-of-service-controller-component-fo
-    //https://www.baeldung.com/spring-component-repository-service
-    //https://www.baeldung.com/spring-component-annotation
+
     public static void main(String[] args) {
         SpringApplication.run(MySamplesApplication.class, args);
     }
@@ -42,10 +36,10 @@ public class MySamplesApplication {
         };
     }
 
-    @Bean
+    /*@Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
-    }
+    }*/
     /*@Bean*/
     /*public CommandLineRunner loadData(UserRepository userRepository, ReservationRepository reservationRepository){
         return (args) ->{

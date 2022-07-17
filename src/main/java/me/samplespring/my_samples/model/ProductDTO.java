@@ -19,7 +19,7 @@ public class ProductDTO {
     private String date;
 
     @NotNull
-    private Long Id;
+    private Long id;
 
     @NotNull
     private Long productNo;
