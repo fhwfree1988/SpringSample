@@ -58,3 +58,5 @@ https://spring.io/blog/2011/04/26/advanced-spring-data-jpa-specifications-and-qu
     fun updateSellerTitle(@Param("ids") ids: List<Long>, @Param("title") title: String)
     @Query("select s from Sale s where s.status <> :status")
     fun findAllWithNotEqualStatus(status: SaleStatus): List<Sale>
+
+    T
